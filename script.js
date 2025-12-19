@@ -778,7 +778,7 @@ function stopDictation() {
         voiceButton.title = 'Ativar ditado (clique para falar)';
     }
     status.textContent = 'Ditado desativado';
-    messageInput.placeholder = 'Digite sua mensagem aqui...';
+    messageInput.placeholder = 'Mensagem';
     
     setTimeout(() => {
         status.textContent = '';
@@ -801,7 +801,7 @@ function stopRecording() {
         voiceButton.classList.remove('recording');
         voiceButton.title = 'Ativar ditado (clique para falar)';
     }
-    messageInput.placeholder = 'Digite sua mensagem aqui...';
+    messageInput.placeholder = 'Mensagem';
 }
 
 // Toggle de áudio
