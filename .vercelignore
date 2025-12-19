@@ -1,0 +1,21 @@
+# Arquivos Python (não necessários no Vercel)
+kokoro-server.py
+requirements.txt
+venv/
+__pycache__/
+*.pyc
+
+# Scripts de instalação
+install-kokoro.bat
+start-kokoro.bat
+install.ps1
+
+# Documentação de instalação local
+INSTALAR_TUDO.md
+KOKORO_TTS.md
+TREINAR_MODELO_IA.md
+
+# Node (se não usar)
+node_modules/
+package-lock.json
+

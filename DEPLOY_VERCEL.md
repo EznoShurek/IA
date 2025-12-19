@@ -86,16 +86,10 @@ O **Vercel é uma plataforma para sites estáticos** (HTML, CSS, JavaScript). El
 
 ### 1. Preparar Arquivos
 
-**Criar `.vercelignore`:**
-```
-venv/
-*.bat
-*.ps1
-kokoro-server.py
-requirements.txt
-node_modules/
-.git/
-```
+**Arquivos já criados:**
+- ✅ `.vercelignore` - Ignora arquivos Python
+- ✅ `vercel.json` - Configuração correta
+- ✅ `.gitignore` - Protege informações sensíveis
 
 **Criar `vercel.json` (opcional):**
 ```json

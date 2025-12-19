@@ -7,6 +7,11 @@ __pycache__/
 .Python
 env/
 ENV/
+kokoro-server.py
+requirements.txt
+install-kokoro.bat
+start-kokoro.bat
+install.ps1
 
 # Node
 node_modules/
