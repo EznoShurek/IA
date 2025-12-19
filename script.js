@@ -52,7 +52,8 @@ const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
 const attachButton = document.getElementById('attachButton');
 const fileInput = document.getElementById('fileInput');
-const attachmentsPreview = document.getElementById('attachmentsPreview');
+// attachmentsPreview removido - anexos ainda funcionam mas sem preview visual
+const attachmentsPreview = null;
 const status = document.getElementById('status');
 const themeToggle = document.getElementById('themeToggle');
 const voiceButton = document.getElementById('voiceButton');
@@ -1000,15 +1001,21 @@ function displayAttachment(file) {
         attachmentDiv.appendChild(removeBtn);
     }
     
-    attachmentsPreview.appendChild(attachmentDiv);
+    // Preview removido - anexos ainda funcionam
+    if (attachmentsPreview) {
+        attachmentsPreview.appendChild(attachmentDiv);
+    }
 }
 
 // Remover anexo
 function removeAttachment(fileName) {
     attachments = attachments.filter(f => f.name !== fileName);
-    const attachmentDiv = attachmentsPreview.querySelector(`[data-file-name="${fileName}"]`);
-    if (attachmentDiv) {
-        attachmentDiv.remove();
+    // Preview removido - anexos ainda funcionam
+    if (attachmentsPreview) {
+        const attachmentDiv = attachmentsPreview.querySelector(`[data-file-name="${fileName}"]`);
+        if (attachmentDiv) {
+            attachmentDiv.remove();
+        }
     }
 }
 
@@ -1100,7 +1107,10 @@ async function sendMessage() {
     
     // Limpar anexos
     attachments = [];
-    attachmentsPreview.innerHTML = '';
+    // Preview removido - anexos ainda funcionam
+    if (attachmentsPreview) {
+        attachmentsPreview.innerHTML = '';
+    }
     
     // Desabilitar botão e input
     sendButton.disabled = true;
