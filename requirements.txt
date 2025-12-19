@@ -1,0 +1,11 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+numpy==1.24.3
+
+# Engines TTS (instale pelo menos um):
+# kokoro-tts  # Kokoro-82M (se disponível)
+# gtts  # Google TTS (requer internet)
+# TTS  # Coqui TTS (alternativa completa)
+# piper-tts  # Piper TTS (alternativa leve)
+

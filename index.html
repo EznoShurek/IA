@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zex - powered by nerd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Globos Girando no Fundo -->
+    <div class="globe-container">
+        <div class="globe"></div>
+    </div>
+    <div class="globe-container second">
+        <div class="globe"></div>
+    </div>
+    
+    <!-- Modal de Boas-vindas -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="modal-content">
+            <div class="modal-animation">
+                <div class="ai-icon">
+                    <img src="zex-logo.png" alt="ZEX" class="zex-modal-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<svg width=\'80\' height=\'80\' viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'50\' cy=\'50\' r=\'45\' stroke=\'currentColor\' stroke-width=\'2\' fill=\'none\' opacity=\'0.3\'/><circle cx=\'50\' cy=\'50\' r=\'35\' stroke=\'currentColor\' stroke-width=\'1.5\' fill=\'none\' opacity=\'0.5\'/><circle cx=\'50\' cy=\'50\' r=\'25\' stroke=\'currentColor\' stroke-width=\'1\' fill=\'none\' opacity=\'0.7\'/><circle cx=\'50\' cy=\'50\' r=\'15\' fill=\'currentColor\' opacity=\'0.8\'/><path d=\'M 50 20 L 50 35 M 50 65 L 50 80 M 20 50 L 35 50 M 65 50 L 80 50\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\'/><circle cx=\'50\' cy=\'50\' r=\'5\' fill=\'currentColor\'/></svg>';">
+                </div>
+                <div class="particles">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <h2>Bem-vindo ao Zex</h2>
+            <p>Para personalizar sua experiência, por favor, digite seu nome:</p>
+            <input 
+                type="text" 
+                id="userNameInput" 
+                placeholder="Seu nome aqui..." 
+                maxlength="30"
+                autocomplete="off"
+            >
+            <button id="startChatBtn" class="start-button">
+                <span>Começar</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="container" id="mainContainer" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <div class="logo-text">
+                            <h1>Zex</h1>
+                            <p class="subtitle">powered by nerd</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-greeting">Olá, <span id="userNameDisplay">Usuário</span>!</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message">
+                <h2 id="welcomeTitle">Olá! Como posso ajudar você hoje?</h2>
+                <p>Faça uma pergunta, anexe arquivos ou imagens e eu responderei usando inteligência artificial.</p>
+                <p style="margin-top: 10px; font-size: 14px; opacity: 0.8;">Zex powered by nerd</p>
+            </div>
+        </div>
+
+        <!-- Input Container -->
+        <div class="input-container">
+            <!-- Anexos Preview -->
+            <div class="attachments-preview" id="attachmentsPreview"></div>
+            
+            <div class="input-wrapper">
+                <button class="attach-button" id="attachButton" title="Anexar arquivo">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    </svg>
+                </button>
+                <input type="file" id="fileInput" accept=".txt,.jpg,.jpeg,.png,.gif,.webp" multiple style="display: none;">
+                
+                <button class="voice-button" id="voiceButton" title="Ativar ditado (clique para falar)">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                </button>
+                
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Digite sua mensagem aqui..." 
+                    rows="1"
+                ></textarea>
+                
+                <button class="audio-toggle" id="audioToggle" title="Ativar/Desativar áudio (ZEX falar)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                </button>
+                
+                <button id="sendButton" class="send-button">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2L11 13"/>
+                        <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="status" id="status"></div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
