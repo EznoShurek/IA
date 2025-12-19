@@ -1179,6 +1179,7 @@ body::after {
         box-shadow: none;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .header {
