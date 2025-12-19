@@ -1163,39 +1163,388 @@ body::after {
     font-family: 'Courier New', monospace;
 }
 
-/* Responsive */
+/* Responsive - Mobile First - Layout Confortável */
 @media (max-width: 768px) {
+    body {
+        padding: 0;
+        overflow: hidden;
+    }
+
     .container {
+        width: 100%;
         height: 100vh;
         max-height: 100vh;
         border-radius: 0;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
     }
 
     .header {
-        padding: 15px 20px;
+        padding: 16px 18px;
+        min-height: auto;
+        flex-shrink: 0;
+    }
+
+    .header-content {
+        flex-wrap: nowrap;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .logo {
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
     }
 
     .logo-text h1 {
-        font-size: 20px;
+        font-size: 19px;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    .logo-text p {
+        font-size: 11px;
+        line-height: 1.2;
+        margin-top: 2px;
     }
 
     .user-info {
         font-size: 12px;
+        flex: 0 0 auto;
+        text-align: right;
+        padding-left: 8px;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
     }
 
     .chat-container {
-        padding: 20px;
+        flex: 1;
+        padding: 20px 16px;
+        gap: 20px;
+        padding-bottom: 110px; /* Espaço confortável para input fixo */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    .welcome-message {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .welcome-message h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        line-height: 1.3;
+    }
+
+    .welcome-message p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    .message {
+        margin-bottom: 18px;
+    }
+
+    .message-content {
+        max-width: 82%;
+        padding: 14px 18px;
+        font-size: 15px;
+        line-height: 1.6;
+        word-wrap: break-word;
+    }
+
+    .message.user .message-content {
+        background: var(--primary);
+        color: white;
+    }
+
+    .message.ai .message-content {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+    }
+
+    .message-time {
+        font-size: 11px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+
+    .input-container {
+        padding: 14px 16px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-tertiary);
+        border-top: 2px solid var(--border);
+        border-radius: 0;
+        box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        flex-shrink: 0;
+    }
+
+    .input-wrapper {
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 8px;
+    }
+
+    .attach-button,
+    .voice-button,
+    .audio-toggle {
+        width: 42px;
+        height: 42px;
+        padding: 10px;
+        flex-shrink: 0;
+        min-width: 42px;
+        border-radius: 6px;
+    }
+
+    .attach-button svg,
+    .voice-button svg,
+    .audio-toggle svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    #messageInput {
+        font-size: 16px; /* Evita zoom no iOS */
+        padding: 10px 0;
+        max-height: 120px;
+        line-height: 1.5;
+    }
+
+    .send-button {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        flex-shrink: 0;
+    }
+
+    .send-button svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+        padding: 35px 25px;
+        margin: auto;
+        max-height: 85vh;
+        overflow-y: auto;
+        border-radius: 12px;
+    }
+
+    .modal-content h2 {
+        font-size: 24px;
+        margin-bottom: 18px;
+        line-height: 1.3;
+    }
+
+    .modal-content p {
+        font-size: 15px;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    .modal-input {
+        font-size: 16px; /* Evita zoom no iOS */
+        padding: 16px 18px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+    }
+
+    .start-button {
+        padding: 16px 35px;
+        font-size: 16px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .attachments-preview {
+        padding: 10px;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .attachment-item {
+        padding: 10px 14px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+
+    .remove-attachment {
+        width: 22px;
+        height: 22px;
+    }
+
+    .status {
+        font-size: 13px;
+        margin-top: 10px;
+        padding: 0 16px;
+        min-height: 22px;
+    }
+
+    /* Globos - reduzir no mobile mas manter visível */
+    .globe-container {
+        opacity: 0.2;
+        transform: scale(0.6);
+    }
+
+    /* Ajustar código inline e blocos */
+    code {
+        font-size: 13px;
+        padding: 3px 7px;
+        border-radius: 4px;
+    }
+
+    pre {
+        font-size: 13px;
+        padding: 14px;
+        overflow-x: auto;
+        border-radius: 6px;
+        line-height: 1.5;
+    }
+
+    /* Melhorar espaçamento de links */
+    .message-content a {
+        word-break: break-word;
+    }
+
+    /* Typing indicator */
+    .typing-indicator {
+        padding: 14px 18px;
+        max-width: 70px;
+    }
+}
+
+/* Mobile muito pequeno (iPhone SE, etc) - Mantendo Confortável */
+@media (max-width: 375px) {
+    .header {
+        padding: 14px 16px;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
+    }
+
+    .logo-text p {
+        font-size: 10px;
+    }
+
+    .user-info {
+        font-size: 11px;
+    }
+
+    .chat-container {
+        padding: 18px 14px;
+        padding-bottom: 105px;
+        gap: 18px;
+    }
+
+    .welcome-message {
+        padding: 35px 18px;
+    }
+
+    .welcome-message h2 {
+        font-size: 22px;
+    }
+
+    .welcome-message p {
+        font-size: 14px;
     }
 
     .message-content {
         max-width: 85%;
+        padding: 13px 16px;
+        font-size: 14px;
+        line-height: 1.6;
     }
 
-    .input-container {
-        padding: 15px 20px;
+    .input-wrapper {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .attach-button,
+    .voice-button,
+    .audio-toggle,
+    .send-button {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+
+    .attach-button svg,
+    .voice-button svg,
+    .audio-toggle svg,
+    .send-button svg {
+        width: 20px;
+        height: 20px;
     }
 
     .modal-content {
-        padding: 40px 30px;
+        width: 92%;
+        padding: 30px 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 22px;
+    }
+
+    .modal-content p {
+        font-size: 14px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        height: 100vh;
+    }
+
+    .header {
+        padding: 8px 16px;
+        min-height: 50px;
+    }
+
+    .chat-container {
+        padding: 12px;
+        padding-bottom: 80px;
+    }
+
+    .input-container {
+        padding: 10px 14px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+        height: 95vh;
+    }
+
+    .header {
+        padding: 18px 25px;
+    }
+
+    .chat-container {
+        padding: 25px;
+    }
+
+    .message-content {
+        max-width: 70%;
     }
 }
